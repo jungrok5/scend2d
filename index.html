@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2D Top-Down to 3D Perspective & Atmospheric Demo</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Header / Title Overlay -->
+    <header class="header-overlay">
+      <div class="brand">
+        <span class="badge">2.5D ATMOSPHERIC ENGINE</span>
+        <h1>2D to 3D Perspective & Atmospheric Showcase</h1>
+      </div>
+      <div class="boss-hp-container">
+        <div class="boss-name">🔥 INFERNO GOLEM (BOSS)</div>
+        <div class="hp-bar-bg">
+          <div id="bossHpBar" class="hp-bar-fill" style="width: 100%;"></div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Render Canvas Container -->
+    <div class="canvas-wrapper">
+      <canvas id="gameCanvas"></canvas>
+
+      <!-- View Description Overlay Box -->
+      <div id="modeDescriptionCard" class="mode-desc-card">
+        <h3 id="modeTitle">1. Standard 2D Top-Down</h3>
+        <p id="modeDesc">기본 90도 수직 탑다운 시점입니다. 일반적인 필드 탐색 및 2D 맵 탐험에 사용됩니다.</p>
+        <div class="mode-features" id="modeFeatures">
+          <span>• 90° Overhead</span>
+          <span>• Fixed Camera</span>
+        </div>
+      </div>
+
+      <!-- Virtual Joystick Touch/Mouse Controller -->
+      <div class="joystick-wrapper" id="joystickWrapper">
+        <div class="joystick-base" id="joystickBase">
+          <div class="joystick-stick" id="joystickStick"></div>
+        </div>
+        <div class="joystick-label">WASD / Touch Joystick</div>
+      </div>
+    </div>
+
+    <!-- Floating View Switcher & Settings Control Panel -->
+    <aside class="control-panel">
+      <h2>VIEW MODE SELECTOR</h2>
+      <div class="mode-buttons">
+        <button class="mode-btn active" data-mode="topdown">
+          <span class="btn-num">01</span>
+          <span class="btn-text">Standard Top-Down</span>
+        </button>
+        <button class="mode-btn" data-mode="mode7">
+          <span class="btn-num">02</span>
+          <span class="btn-text">Mode 7 Tilt (SNES)</span>
+        </button>
+        <button class="mode-btn" data-mode="billboard">
+          <span class="btn-num">03</span>
+          <span class="btn-text">2.5D Billboard 3D</span>
+        </button>
+        <button class="mode-btn" data-mode="depth">
+          <span class="btn-num">04</span>
+          <span class="btn-text">Depth & Skewed Shadow</span>
+        </button>
+        <button class="mode-btn" data-mode="cinematic">
+          <span class="btn-num">05</span>
+          <span class="btn-text">Cinematic Tilt-Shift</span>
+        </button>
+      </div>
+
+      <div class="sliders-section">
+        <h3>🎨 GRAPHICS / ART STYLE</h3>
+        <div class="style-buttons">
+          <button class="style-btn active" data-style="vector">✨ HD Procedural Vector</button>
+          <button class="style-btn" data-style="pixel">👾 16-Bit Retro Pixel Art</button>
+        </div>
+      </div>
+
+      <div class="sliders-section">
+        <h3>REALTIME CAMERA CONTROLS</h3>
+        <div class="slider-group">
+          <label>Camera Pitch / Tilt: <span id="tiltVal">45°</span></label>
+          <input type="range" id="tiltSlider" min="15" max="85" value="45">
+        </div>
+        <div class="slider-group">
+          <label>3D Camera Orbit Angle: <span id="rotVal">0°</span></label>
+          <input type="range" id="rotSlider" min="-180" max="180" value="0">
+        </div>
+      </div>
+
+      <div class="sliders-section">
+        <h3>ATMOSPHERIC 3D LAYERS</h3>
+        <div class="toggle-group">
+          <label><input type="checkbox" id="toggleCloud" checked> ☁️ Drifting Cloud Shadows</label>
+          <label><input type="checkbox" id="toggleBokeh" checked> 🌳 Foreground Bokeh Trees</label>
+          <label><input type="checkbox" id="toggleGodRays" checked> ☀️ God Rays / Light Shafts</label>
+          <label><input type="checkbox" id="toggleCanopy" checked> 🍃 Canopy Ground Shadows</label>
+        </div>
+      </div>
+
+      <div class="action-buttons">
+        <button id="bossAttackBtn" class="action-btn boss-btn">⚡ Boss Skill Trigger</button>
+        <button id="resetPosBtn" class="action-btn">🔄 Reset Position</button>
+      </div>
+    </aside>
+  </div>
+
+  <script src="sprites.js"></script>
+  <script src="renderers.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
